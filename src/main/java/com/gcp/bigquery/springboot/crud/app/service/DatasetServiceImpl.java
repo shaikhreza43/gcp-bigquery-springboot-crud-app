@@ -3,6 +3,7 @@ package com.gcp.bigquery.springboot.crud.app.service;
 import com.gcp.bigquery.springboot.crud.app.common.Document;
 import com.gcp.bigquery.springboot.crud.app.dto.DatasetDto;
 import com.google.cloud.bigquery.BigQuery;
+import com.google.cloud.bigquery.BigQueryException;
 import com.google.cloud.bigquery.BigQueryOptions;
 import com.google.cloud.bigquery.Dataset;
 import com.google.cloud.bigquery.DatasetInfo;
@@ -40,6 +41,10 @@ public class DatasetServiceImpl implements DatasetService {
             doc.setMessage("DataSet Created Successfully");
             doc.setStatusCode(201);
 
+        } catch (BigQueryException ex) {
+            doc.setData(ex);
+            doc.setMessage(ex.getMessage());
+            doc.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
         } catch (Exception ex) {
             doc.setData(null);
             doc.setMessage(ex.getLocalizedMessage());
