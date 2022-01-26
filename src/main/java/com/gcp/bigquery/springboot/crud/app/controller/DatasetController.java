@@ -4,6 +4,7 @@ import com.gcp.bigquery.springboot.crud.app.common.Document;
 import com.gcp.bigquery.springboot.crud.app.dto.DatasetDto;
 import com.gcp.bigquery.springboot.crud.app.service.DatasetService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SuppressWarnings("rawtypes")
 public class DatasetController {
 
+    @Autowired
     private DatasetService datasetService;
 
     @PostMapping("/create-dataset")
